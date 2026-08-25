@@ -1,0 +1,20 @@
+<svg width="900" height="430" viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="900" height="430" rx="14" fill="#0d1117"/>
+  <rect x="0" y="0" width="900" height="40" rx="14" fill="#161b22"/>
+  <rect x="0" y="26" width="900" height="14" fill="#161b22"/>
+  <circle cx="26" cy="20" r="6.5" fill="#ff5f56"/>
+  <circle cx="48" cy="20" r="6.5" fill="#ffbd2e"/>
+  <circle cx="70" cy="20" r="6.5" fill="#27c93f"/>
+  <text x="450" y="25" text-anchor="middle" font-family="'SFMono-Regular','Consolas',monospace" font-size="13" fill="#8b949e">~/my-project</text>
+
+  <g font-family="'SFMono-Regular','Consolas','Menlo',monospace" font-size="16.5" fill="#c9d1d9" xml:space="preserve">
+    <text x="28" y="74"><tspan fill="#8b949e">$ </tspan><tspan fill="#e6edf3">envcheck</tspan></text>
+    <text x="28" y="106"><tspan fill="#22c55e">✓</tspan><tspan fill="#c9d1d9">  git            Git 2.45.1 satisfait &gt;=2.40.0</tspan></text>
+    <text x="28" y="136"><tspan fill="#22c55e">✓</tspan><tspan fill="#c9d1d9">  node           Node 20.15.1 satisfait &gt;=20.0.0 &lt;23.0.0</tspan></text>
+    <text x="28" y="166"><tspan fill="#f85149">✗</tspan><tspan fill="#c9d1d9">  docker-daemon  Le client Docker est disponible, mais le démon est inaccessible.</tspan></text>
+    <text x="28" y="192"><tspan fill="#6e7681">    ↳ Démarrez Docker Desktop ou le service Docker.</tspan></text>
+    <text x="28" y="222"><tspan fill="#f85149">✗</tspan><tspan fill="#c9d1d9">  database-url   La variable DATABASE_URL est absente</tspan></text>
+    <text x="28" y="248"><tspan fill="#6e7681">    ↳ Copiez .env.example vers .env et renseignez DATABASE_URL.</tspan></text>
+    <text x="28" y="296"><tspan fill="#e3b341" font-weight="700">2/4 contrôles requis réussis — environnement non prêt.</tspan></text>
+  </g>
+</svg>

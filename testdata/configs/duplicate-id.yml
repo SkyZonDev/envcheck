@@ -1,0 +1,8 @@
+version: 1
+checks:
+  - id: git
+    type: command
+    command: git
+  - id: git
+    type: command
+    command: git

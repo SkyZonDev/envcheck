@@ -1,0 +1,15 @@
+version: 1
+projectName: m2-smoke-test
+
+checks:
+  - id: database-url
+    type: env
+    envName: DATABASE_URL
+    allowEmpty: false
+    hint: "Copiez .env.example vers .env et renseignez DATABASE_URL."
+
+  - id: sentry-dsn
+    type: env
+    envName: SENTRY_DSN
+    required: false
+    hint: "Optionnel, utilisé seulement pour le monitoring d'erreurs."

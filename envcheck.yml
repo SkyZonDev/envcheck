@@ -1,0 +1,16 @@
+version: 1
+projectName: envcheck
+
+checks:
+  - id: go
+    type: command
+    command: go
+    version: ">=1.22.0"
+    versionArgs: ["version"]
+    versionPattern: "go([0-9]+\\.[0-9]+(?:\\.[0-9]+)?)"
+    hint: "Installez Go depuis https://go.dev/dl/."
+
+  - id: go-mod
+    type: path
+    path: ./go.mod
+    kind: file

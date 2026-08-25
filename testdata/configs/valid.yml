@@ -1,0 +1,27 @@
+version: 1
+projectName: api-platform
+
+checks:
+  - id: git
+    type: command
+    command: git
+    version: ">=2.40.0"
+    versionArgs: ["--version"]
+    versionPattern: "([0-9]+\\.[0-9]+\\.[0-9]+)"
+    hint: "Installez Git depuis https://git-scm.com/downloads."
+
+  - id: docker-daemon
+    type: docker
+    required: true
+    hint: "Démarrez Docker Desktop ou le service Docker."
+
+  - id: database-url
+    type: env
+    envName: DATABASE_URL
+    allowEmpty: false
+    hint: "Copiez .env.example vers .env et renseignez DATABASE_URL."
+
+  - id: migration-directory
+    type: path
+    path: ./migrations
+    kind: directory
