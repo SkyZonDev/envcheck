@@ -1,0 +1,3 @@
+# LF partout, y compris au checkout Windows : les tests comparent des
+# YAML et le modèle init au contenu exact (os/exec, pas de shell).
+* text=auto eol=lf

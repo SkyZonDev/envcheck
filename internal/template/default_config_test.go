@@ -3,6 +3,7 @@ package template_test
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/SkyZonDev/envcheck/internal/config"
@@ -28,7 +29,9 @@ func TestExampleMatchesTemplate(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if string(got) != template.DefaultConfig {
+	// Git sous Windows (core.autocrlf) peut livrer du CRLF ; le modèle Go
+	// est toujours en LF, comme envcheck init.
+	if strings.ReplaceAll(string(got), "\r\n", "\n") != template.DefaultConfig {
 		t.Fatal("examples/envcheck.yml doit rester identique au modèle de envcheck init")
 	}
 }
