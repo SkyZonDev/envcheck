@@ -58,7 +58,7 @@ jobs:
           mkdir -p staging
           cp dist/checksums.txt staging/
           cp dist/envcheck_*_linux_amd64.tar.gz staging/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: envcheck-linux-amd64
           path: staging/
