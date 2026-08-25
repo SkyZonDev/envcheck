@@ -7,6 +7,8 @@ et le versionnement suit [SemVer](https://semver.org/lang/fr/).
 
 ## [Unreleased]
 
+## [0.1.0] — 2026-08-26
+
 ### Ajouté
 
 - Documentation utilisateur : README, `docs/fonctionnement.md` (pipeline et
@@ -22,3 +24,12 @@ et le versionnement suit [SemVer](https://semver.org/lang/fr/).
 - GoReleaser : archives Linux/macOS (`amd64`, `arm64`), Windows (`amd64`),
   `checksums.txt`, version injectée au build. Un job CI installe l'artefact
   Linux sur un runner sans toolchain Go.
+
+### Corrigé
+
+- Comparaison du modèle `envcheck init` et de `examples/envcheck.yml` sous
+  Windows (CRLF au checkout).
+
+[Unreleased]: https://github.com/SkyZonDev/envcheck/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/SkyZonDev/envcheck/releases/tag/v0.1.0
+
