@@ -19,10 +19,16 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
+      - name: Extraire les notes depuis CHANGELOG.md
+        run: |
+          set -euo pipefail
+          bash scripts/extract-release-notes.sh "${GITHUB_REF_NAME}" release-notes.md
+          echo "--- release-notes.md ---"
+          cat release-notes.md
       - uses: goreleaser/goreleaser-action@v7
         with:
           distribution: goreleaser
           version: "~> v2"
-          args: release --clean
+          args: release --clean --release-notes release-notes.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

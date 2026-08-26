@@ -9,21 +9,24 @@ et le versionnement suit [SemVer](https://semver.org/lang/fr/).
 
 ## [0.1.0] — 2026-08-26
 
+Première version publique. Un binaire, un `envcheck.yml` dans le dépôt, un
+verdict : le poste — ou le runner CI — a-t-il vraiment les prérequis ?
+
 ### Ajouté
 
-- Documentation utilisateur : README, `docs/fonctionnement.md` (pipeline et
-  architecture), `docs/configuration.md` (schéma YAML), `docs/cli.md`
-  (commandes, rapport JSON, CI).
-- Contrôle `docker` : distingue client introuvable, daemon inaccessible,
-  permissions insuffisantes et timeout (3 s). Aucun test n'exige un démon.
-- `envcheck init`, `--dry-run` (stdout YAML uniquement) et `--force`.
-- Coloration ANSI du rendu texte, coupée hors TTY, avec `--no-color` et `NO_COLOR`.
-- Contrôles `command` (SemVer, `os/exec` sans shell) et `path`.
-- Contrôle `env` : présence d'une variable, jamais sa valeur.
-- Chargement YAML strict (`KnownFields`), découverte limitée au répertoire courant.
-- GoReleaser : archives Linux/macOS (`amd64`, `arm64`), Windows (`amd64`),
-  `checksums.txt`, version injectée au build. Un job CI installe l'artefact
-  Linux sur un runner sans toolchain Go.
+- Contrôles `command` : le binaire est dans le PATH, avec une plage SemVer
+  optionnelle. Exécution via `os/exec` sans shell, délai de 3 s.
+- Contrôles `docker` : messages distincts si le client manque, si le démon
+  ne répond pas, ou si les permissions sont insuffisantes.
+- Contrôles `env` : la variable est définie (ou vide si `allowEmpty`). Sa
+  valeur n'apparaît jamais dans le rapport.
+- Contrôles `path` : un fichier ou un dossier existe, relativement au dépôt.
+- `envcheck init` génère un modèle (`--dry-run` pour l'afficher, `--force`
+  pour écraser).
+- Rapport texte (couleurs, `--quiet`, `--no-color`) ou JSON pour la CI.
+  Codes de sortie `0` (prêt), `1` (échec), `2` (config), `3` (interne).
+- Archives Linux et macOS (`amd64`, `arm64`), Windows (`amd64`), et
+  `checksums.txt`.
 
 ### Corrigé
 
@@ -32,4 +35,3 @@ et le versionnement suit [SemVer](https://semver.org/lang/fr/).
 
 [Unreleased]: https://github.com/SkyZonDev/envcheck/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/SkyZonDev/envcheck/releases/tag/v0.1.0
-
