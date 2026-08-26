@@ -45,8 +45,8 @@ archives:
 checksum:
   name_template: checksums.txt
 
-changelog:
-  use: github-native
+# Les notes GitHub viennent de CHANGELOG.md via --release-notes
+# (scripts/extract-release-notes.sh), pas de la liste brute des commits.
 
 snapshot:
   version_template: "0.0.0-snapshot-{{ .ShortCommit }}"

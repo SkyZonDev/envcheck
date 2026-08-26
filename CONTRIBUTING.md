@@ -24,17 +24,37 @@ Linux amd64, vérifie `checksums.txt`, et lance le binaire (`--version`,
 
 ## Release
 
-Réservé aux mainteneurs. Un tag semver `v*` déclenche
-`.github/workflows/release.yml` :
+`main` est protégé : on n'y pousse pas. Tout passe par une pull request.
+
+1. Branche depuis `main` à jour (`release/vX.Y.Z` ou `docs/…`).
+2. Rédigez la section `## [X.Y.Z]` dans `CHANGELOG.md` **pour un humain** :
+   ce qui change pour l'utilisateur, pas la liste des commits. Laissez
+   `## [Unreleased]` vide au-dessus.
+3. Ouvrez une PR vers `main`. La CI (tests + snapshot GoReleaser) doit passer.
+4. Après le merge, depuis `main` à jour, poussez **uniquement le tag** :
 
 ```bash
-git tag v0.1.0
+git checkout main
+git pull origin main
+git tag -a v0.1.0 -m "v0.1.0"
 git push origin v0.1.0
 ```
 
-GoReleaser injecte la version via `-X main.version=…`, publie les
-archives et `checksums.txt` sur GitHub Releases. Ne jamais forcer un
-tag déjà poussé.
+`.github/workflows/release.yml` se déclenche sur `v*`. Il extrait la
+section CHANGELOG correspondant au tag (`scripts/extract-release-notes.sh`)
+et la passe à GoReleaser : c'est ce texte qui apparaît dans « What's Changed »,
+pas le journal git. S'il n'y a pas de section pour cette version, la release
+échoue.
+
+GoReleaser injecte la version via `-X main.version=…`, publie les archives
+et `checksums.txt`. Ne jamais forcer un tag déjà poussé.
+
+Pour corriger les notes d'une release déjà publiée (sans retaguer) :
+
+```bash
+bash scripts/extract-release-notes.sh v0.1.0 notes.md
+gh release edit v0.1.0 --notes-file notes.md
+```
 
 ## Documentation
 
